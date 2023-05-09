@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/", getClasses);
 router.post("/", createClass);
-router.put("/:id", updateClass);
+router.patch("/:id", updateClass);
 router.delete("/:id", deleteClass);
 
 export default router;
