@@ -1,5 +1,16 @@
 import Class from "../models/classModel.js";
 
+// Get class
+
+export const getClasses = async (req, res) => {
+  try {
+    const clasess = await Class.find();
+    res.status(200).json(clasess);
+  } catch (err) {
+    res.status(500).json({ message: { error: err.message } });
+  }
+};
+
 // Create class
 export const createClass = async (req, res) => {
   const { name } = req.body;
