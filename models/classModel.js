@@ -12,6 +12,10 @@ const classSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Student",
   },
+  teachers: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Teacher",
+  },
 });
 
-export default mongoose.model("Class", classSchema);
+export const Class = mongoose.model("Class", classSchema);

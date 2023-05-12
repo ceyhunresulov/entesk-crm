@@ -1,4 +1,4 @@
-import Class from "../models/classModel.js";
+import { Class } from "../models/classModel.js";
 
 // Get class
 

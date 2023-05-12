@@ -4,7 +4,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import studentRoutes from "./routes/studentRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 import classRoutes from "./routes/classRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -14,7 +17,10 @@ const uri = process.env.DB_URI;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use("/api/user/auth", authRoutes);
 app.use("/api/user/student", studentRoutes);
+app.use("/api/user/teacher", teacherRoutes);
+app.use("/api/user/admin", adminRoutes);
 app.use("/api/class", classRoutes);
 
 app.get("/", (req, res) => {

@@ -26,6 +26,7 @@ const studentSchema = new Schema({
   },
   amount: {
     type: Number,
+    require: true,
   },
   classes: [
     {
@@ -35,4 +36,4 @@ const studentSchema = new Schema({
   ],
 });
 
-export default mongoose.model("Student", studentSchema);
+export const Student = mongoose.model("Student", studentSchema);
