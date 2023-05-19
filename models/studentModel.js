@@ -31,7 +31,7 @@ const studentSchema = new Schema({
   classes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Class",
+      ref: "Course",
     },
   ],
 });

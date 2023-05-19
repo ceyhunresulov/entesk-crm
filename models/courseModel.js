@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const classSchema = new Schema({
+const courseSchema = new Schema({
   name: {
     type: String,
     require: true,
@@ -18,4 +18,4 @@ const classSchema = new Schema({
   },
 });
 
-export const Class = mongoose.model("Class", classSchema);
+export const Course = mongoose.model("Course", courseSchema);

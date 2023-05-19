@@ -8,7 +8,7 @@ export const getAdmin = async (req, res) => {
     const admin = await Admin.findById(id);
 
     if (!admin) {
-      return res.status(404).json({ message: "Student not found" });
+      return res.status(404).json({ message: "admin not found" });
     }
 
     res.status(200).json(admin);

@@ -1,49 +1,49 @@
-import { Class } from "../models/classModel.js";
+import { Course } from "../models/courseModel.js";
 
-// Get class
+// Get courses
 
-export const getClasses = async (req, res) => {
+export const getCourses = async (req, res) => {
   try {
-    const clasess = await Class.find();
-    res.status(200).json(clasess);
+    const courses = await Course.find();
+    res.status(200).json(courses);
   } catch (err) {
     res.status(500).json({ message: { error: err.message } });
   }
 };
 
-// Create class
-export const createClass = async (req, res) => {
+// Create course
+export const createCourse = async (req, res) => {
   const { name } = req.body;
   try {
-    const existingClass = await Class.findOne({ name });
-    if (existingClass) {
+    const existingCourse = await Class.findOne({ name });
+    if (existingCourse) {
       return res
         .status(400)
         .json({ message: "A class with the same name already exists" });
     }
 
-    const newClass = new Class(req.body);
-    await newClass.save();
-    res.status(201).json(newClass);
+    const newCourse = new Class(req.body);
+    await newCourse.save();
+    res.status(201).json(newCourse);
   } catch (err) {
     res.status(500).json({ errror: err.message });
   }
 };
 
 // Update class
-export const updateClass = async (req, res) => {
+export const updateCourse = async (req, res) => {
   const { id } = req.params;
   try {
-    const updatedClass = await Class.findByIdAndUpdate(id, req.body, {
+    const updatedCourse = await Class.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
 
-    if (!updateClass) {
+    if (!updatedCourse) {
       return res.status(404).json({ message: "Class not found" });
     }
 
-    res.status(200).json(updatedClass);
+    res.status(200).json(updatedCourse);
   } catch (err) {
     res.status(500).json({ message: { error: err.message } });
   }
@@ -51,13 +51,13 @@ export const updateClass = async (req, res) => {
 
 // Delete class
 
-export const deleteClass = async (req, res) => {
+export const deleteCourse = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const deletedClass = await Class.findByIdAndDelete(id);
+    const deletedCourse = await Class.findByIdAndDelete(id);
 
-    if (!deletedClass) {
+    if (!deletedCourse) {
       return res.status(404).json({ message: "Class not found" });
     }
 

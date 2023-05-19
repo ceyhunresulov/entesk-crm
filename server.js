@@ -6,8 +6,9 @@ import mongoose from "mongoose";
 import studentRoutes from "./routes/studentRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
-import classRoutes from "./routes/classRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import lessonRoutes from "./routes/lessonRotes.js";
 
 dotenv.config();
 
@@ -21,7 +22,8 @@ app.use("/api/user/auth", authRoutes);
 app.use("/api/user/student", studentRoutes);
 app.use("/api/user/teacher", teacherRoutes);
 app.use("/api/user/admin", adminRoutes);
-app.use("/api/class", classRoutes);
+app.use("/api/course", courseRoutes);
+app.use("/api/lesson", lessonRoutes);
 
 app.get("/", (req, res) => {
   res.send("salam");

@@ -1,5 +1,5 @@
 import { Student } from "../models/studentModel.js";
-import { Class } from "../models/classModel.js";
+import { Course } from "../models/courseModel.js";
 import { Teacher } from "../models/teacherModel.js";
 import { Admin } from "../models/adminModel.js";
 import bcrypt from "bcrypt";
@@ -50,15 +50,15 @@ export const registerStudent = async (req, res) => {
         .json({ message: "A user with the same email already exists" });
     }
 
-    const classesId = req.body.classes;
+    const coursesId = req.body.courses;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     const student = new Student({ ...req.body, password: hashedPassword });
     await student.save();
 
-    await Class.updateMany(
-      { _id: { $in: classesId } },
+    await Course.updateMany(
+      { _id: { $in: coursesId } },
       { $addToSet: { students: student._id } }
     );
 
@@ -82,15 +82,15 @@ export const registerTeacher = async (req, res) => {
         .json({ message: "A user with the same email already exists" });
     }
 
-    const classesId = req.body.classes;
+    const coursesId = req.body.courses;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     const teacher = new Teacher({ ...req.body, password: hashedPassword });
     await teacher.save();
 
-    await Class.updateMany(
-      { _id: { $in: classesId } },
+    await Course.updateMany(
+      { _id: { $in: coursesId } },
       { $addToSet: { teachers: teacher._id } }
     );
 
